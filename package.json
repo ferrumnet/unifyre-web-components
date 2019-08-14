@@ -1,0 +1,42 @@
+{
+  "name": "unifyre-wallet-core",
+  "version": "0.0.1",
+  "description": "Core react code for Unifyre wallet",
+  "main": "src/index.ts",
+  "typings": "./lib/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "files": [
+    "lib"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.ts$": "ts-jest"
+    },
+    "testRegex": "/src/.*\\.test\\.ts$"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferrumnet/unifyre-wallet-core.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferrumnet/unifyre-wallet-core/issues"
+  },
+  "homepage": "https://github.com/ferrumnet/unifyre-wallet-core#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  }
+}
