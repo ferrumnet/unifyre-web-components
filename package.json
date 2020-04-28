@@ -2,16 +2,39 @@
   "name": "unifyre-wallet-core",
   "version": "0.0.1",
   "description": "Core react code for Unifyre wallet",
-  "main": "src/index.ts",
-  "typings": "./lib/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.4",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "files": [
-    "lib"
+    "dist"
   ],
+  "dependencies": {
+    "@iconify/icons-ion": "^1.0.10",
+    "@iconify/react": "^1.1.1",
+    "@rollup/plugin-auto-install": "^2.0.0",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "moment": "^2.24.0",
+    "unifyre-native-assets": "git+https://github.com/ferrumnet/unifyre-native-assets.git",
+    "unifyre-react-helper": "git+https://github.com/ferrumnet/unifyre-react-helper.git"
+  },
   "jest": {
     "moduleFileExtensions": [
       "ts",
@@ -34,6 +57,24 @@
   },
   "homepage": "https://github.com/ferrumnet/unifyre-wallet-core#readme",
   "devDependencies": {
+    "@svgr/rollup": "^2.4.1",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "gh-pages": "^1.2.0",
+    "cross-env": "^5.1.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^1.1.4",
+    "rollup": "^1.31.1",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^1.6.2",
+    "rollup-plugin-url": "^1.4.0",
     "@types/jest": "^24.0.17",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
