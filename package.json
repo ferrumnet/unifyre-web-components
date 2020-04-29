@@ -47,15 +47,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ferrumnet/unifyre-wallet-core.git"
+    "url": "git+https://github.com/ferrumnet/unifyre-web-components.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ferrumnet/unifyre-wallet-core/issues"
+    "url": "https://github.com/ferrumnet/unifyre-web-components/issues"
   },
-  "homepage": "https://github.com/ferrumnet/unifyre-wallet-core#readme",
+  "homepage": "https://github.com/ferrumnet/unifyre-web-components#readme",
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
     "babel-core": "^6.26.3",
