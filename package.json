@@ -1,7 +1,7 @@
 {
-  "name": "unifyre-wallet-core",
+  "name": "unifyre-web-components",
   "version": "0.0.1",
-  "description": "Core react code for Unifyre wallet",
+  "description": "Web components for Unifyre",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
