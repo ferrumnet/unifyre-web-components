@@ -26,15 +26,10 @@ export class ThemedText {
     return ThemedText.text({ text, style }, s => s.small);
   }
 
-  static text({ text, style }, styleSelector) {
+  static text({ text, style = {} }, styleSelector) {
     const theme = useContext(ThemeContext);
     const styles = themedStyles(theme);
-
-    return (
-      <div>
-        {text}
-      </div>
-    );
+    return <div style={{...styles.commonText, ...styleSelector(styles), ...style }}>{text}</div>;
   }
 }
 
@@ -42,7 +37,8 @@ const themedStyles = function(theme) {
   return {
     commonText: {
       fontFamily: theme.get(Theme.Font.main),
-      color: theme.get(Theme.Colors.textColor)
+      // color: theme.get(Theme.Colors.textColor),
+      color: "pink"
     },
     h1: {
       fontSize: theme.get(Theme.Text.h1Size)
@@ -57,10 +53,10 @@ const themedStyles = function(theme) {
       fontSize: theme.get(Theme.Text.h4Size)
     },
     p: {
-      fontSize: theme.get(Theme.Text.h2Size) * 0.5
+      fontSize: theme.get(Theme.Text.h2Size) * 0.7
     },
     small: {
-      fontSize: theme.get(Theme.Text.h3Size) * 0.5
+      fontSize: theme.get(Theme.Text.h3Size) * 0.7
     }
   };
 };

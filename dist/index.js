@@ -13,18 +13,6 @@ var react = require('@iconify/react');
 var mdArrowDropdown = _interopDefault(require('@iconify/icons-ion/md-arrow-dropdown'));
 var moment = _interopDefault(require('moment'));
 
-function Greeting() {
-  return React__default.createElement(
-    "div",
-    null,
-    React__default.createElement(
-      "p",
-      null,
-      "hello edna"
-    )
-  );
-}
-
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -114,32 +102,6 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-function Gap(_ref) {
-  var size = _ref.size;
-
-  var theme = React.useContext(unifyreReactHelper.ThemeContext);
-  var styles = themedStyles(theme);
-  return React__default.createElement(
-    "div",
-    null,
-    React__default.createElement("p", {
-      style: _extends({}, styles.gap, size === "small" ? styles.smallGap : {})
-    })
-  );
-}
-
-var themedStyles = function themedStyles(theme) {
-  return {
-    gap: {
-      width: "100%",
-      height: theme.get(unifyreReactHelper.Theme.Spaces.gap)
-    },
-    smallGap: {
-      height: theme.get(unifyreReactHelper.Theme.Spaces.gap) / 2
-    }
-  };
-};
-
 var ThemedText = function () {
   function ThemedText() {
     classCallCheck(this, ThemedText);
@@ -209,14 +171,17 @@ var ThemedText = function () {
     key: "text",
     value: function text(_ref7, styleSelector) {
       var _text = _ref7.text,
-          style = _ref7.style;
+          _ref7$style = _ref7.style,
+          style = _ref7$style === undefined ? {} : _ref7$style;
 
       var theme = React.useContext(unifyreReactHelper.ThemeContext);
-      var styles = themedStyles$1(theme);
-
+      var styles = themedStyles(theme);
+      console.log(style, 'Style');
+      // return <div style={...styles.commonText, styleSelector(styles), style || {}}>{text}</div>;
+      // console.log(styleSelector(styles), 'styleSelector(styles)')
       return React__default.createElement(
         "div",
-        null,
+        { style: _extends({}, styles.commonText, styleSelector(styles), style) },
         _text
       );
     }
@@ -225,11 +190,12 @@ var ThemedText = function () {
 }();
 
 
-var themedStyles$1 = function themedStyles(theme) {
+var themedStyles = function themedStyles(theme) {
   return {
     commonText: {
       fontFamily: theme.get(unifyreReactHelper.Theme.Font.main),
-      color: theme.get(unifyreReactHelper.Theme.Colors.textColor)
+      // color: theme.get(Theme.Colors.textColor),
+      color: "pink"
     },
     h1: {
       fontSize: theme.get(unifyreReactHelper.Theme.Text.h1Size)
@@ -244,10 +210,36 @@ var themedStyles$1 = function themedStyles(theme) {
       fontSize: theme.get(unifyreReactHelper.Theme.Text.h4Size)
     },
     p: {
-      fontSize: theme.get(unifyreReactHelper.Theme.Text.h2Size) * 0.5
+      fontSize: theme.get(unifyreReactHelper.Theme.Text.h2Size) * 0.7
     },
     small: {
-      fontSize: theme.get(unifyreReactHelper.Theme.Text.h3Size) * 0.5
+      fontSize: theme.get(unifyreReactHelper.Theme.Text.h3Size) * 0.7
+    }
+  };
+};
+
+function Gap(_ref) {
+  var size = _ref.size;
+
+  var theme = React.useContext(unifyreReactHelper.ThemeContext);
+  var styles = themedStyles$1(theme);
+  return React__default.createElement(
+    "div",
+    null,
+    React__default.createElement("p", {
+      style: _extends({}, styles.gap, size === "small" ? styles.smallGap : {})
+    })
+  );
+}
+
+var themedStyles$1 = function themedStyles(theme) {
+  return {
+    gap: {
+      width: "100%",
+      height: theme.get(unifyreReactHelper.Theme.Spaces.gap)
+    },
+    smallGap: {
+      height: theme.get(unifyreReactHelper.Theme.Spaces.gap) / 2
     }
   };
 };
@@ -2348,7 +2340,6 @@ exports.Coin = Coin;
 exports.CoinBalance = CoinBalance;
 exports.CoinDeposit = CoinDeposit;
 exports.Gap = Gap;
-exports.Greeting = Greeting;
 exports.HeaderLabel = HeaderLabel;
 exports.IconLabel = IconLabel;
 exports.InputGroupAddon = InputGroupAddon;

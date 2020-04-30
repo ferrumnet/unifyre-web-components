@@ -6,18 +6,6 @@ import { Icon } from '@iconify/react';
 import mdArrowDropdown from '@iconify/icons-ion/md-arrow-dropdown';
 import moment from 'moment';
 
-function Greeting() {
-  return React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "p",
-      null,
-      "hello edna"
-    )
-  );
-}
-
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -107,32 +95,6 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-function Gap(_ref) {
-  var size = _ref.size;
-
-  var theme = useContext(ThemeContext);
-  var styles = themedStyles(theme);
-  return React.createElement(
-    "div",
-    null,
-    React.createElement("p", {
-      style: _extends({}, styles.gap, size === "small" ? styles.smallGap : {})
-    })
-  );
-}
-
-var themedStyles = function themedStyles(theme) {
-  return {
-    gap: {
-      width: "100%",
-      height: theme.get(Theme.Spaces.gap)
-    },
-    smallGap: {
-      height: theme.get(Theme.Spaces.gap) / 2
-    }
-  };
-};
-
 var ThemedText = function () {
   function ThemedText() {
     classCallCheck(this, ThemedText);
@@ -202,14 +164,17 @@ var ThemedText = function () {
     key: "text",
     value: function text(_ref7, styleSelector) {
       var _text = _ref7.text,
-          style = _ref7.style;
+          _ref7$style = _ref7.style,
+          style = _ref7$style === undefined ? {} : _ref7$style;
 
       var theme = useContext(ThemeContext);
-      var styles = themedStyles$1(theme);
-
+      var styles = themedStyles(theme);
+      console.log(style, 'Style');
+      // return <div style={...styles.commonText, styleSelector(styles), style || {}}>{text}</div>;
+      // console.log(styleSelector(styles), 'styleSelector(styles)')
       return React.createElement(
         "div",
-        null,
+        { style: _extends({}, styles.commonText, styleSelector(styles), style) },
         _text
       );
     }
@@ -218,11 +183,12 @@ var ThemedText = function () {
 }();
 
 
-var themedStyles$1 = function themedStyles(theme) {
+var themedStyles = function themedStyles(theme) {
   return {
     commonText: {
       fontFamily: theme.get(Theme.Font.main),
-      color: theme.get(Theme.Colors.textColor)
+      // color: theme.get(Theme.Colors.textColor),
+      color: "pink"
     },
     h1: {
       fontSize: theme.get(Theme.Text.h1Size)
@@ -237,10 +203,36 @@ var themedStyles$1 = function themedStyles(theme) {
       fontSize: theme.get(Theme.Text.h4Size)
     },
     p: {
-      fontSize: theme.get(Theme.Text.h2Size) * 0.5
+      fontSize: theme.get(Theme.Text.h2Size) * 0.7
     },
     small: {
-      fontSize: theme.get(Theme.Text.h3Size) * 0.5
+      fontSize: theme.get(Theme.Text.h3Size) * 0.7
+    }
+  };
+};
+
+function Gap(_ref) {
+  var size = _ref.size;
+
+  var theme = useContext(ThemeContext);
+  var styles = themedStyles$1(theme);
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("p", {
+      style: _extends({}, styles.gap, size === "small" ? styles.smallGap : {})
+    })
+  );
+}
+
+var themedStyles$1 = function themedStyles(theme) {
+  return {
+    gap: {
+      width: "100%",
+      height: theme.get(Theme.Spaces.gap)
+    },
+    smallGap: {
+      height: theme.get(Theme.Spaces.gap) / 2
     }
   };
 };
@@ -2334,5 +2326,5 @@ var themedStyles$o = function themedStyles(theme) {
   };
 };
 
-export { AccountListItem, BigLogo, Card, Coin, CoinBalance, CoinDeposit, Gap, Greeting, HeaderLabel, IconLabel, InputGroupAddon, InputSearch, InputSwitch, Item, List, ListItem, Logo, PageTitle, PageTopSection, Row, StickyBottom, ThemedButton, ThemedLink, ThemedText, UserActivity };
+export { AccountListItem, BigLogo, Card, Coin, CoinBalance, CoinDeposit, Gap, HeaderLabel, IconLabel, InputGroupAddon, InputSearch, InputSwitch, Item, List, ListItem, Logo, PageTitle, PageTopSection, Row, StickyBottom, ThemedButton, ThemedLink, ThemedText, UserActivity };
 //# sourceMappingURL=index.es.js.map

@@ -1,6 +1,5 @@
-export * from "./lib/components/hello";
-export * from "./lib/components/Gap";
 export * from "./lib/components/ThemedText";
+export * from "./lib/components/Gap";
 export * from "./lib/components/ThemedButton";
 export * from "./lib/components/ThemedLink";
 export * from "./lib/components/common/BigLogo";
