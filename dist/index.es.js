@@ -169,9 +169,6 @@ var ThemedText = function () {
 
       var theme = useContext(ThemeContext);
       var styles = themedStyles(theme);
-      console.log(style, 'Style');
-      // return <div style={...styles.commonText, styleSelector(styles), style || {}}>{text}</div>;
-      // console.log(styleSelector(styles), 'styleSelector(styles)')
       return React.createElement(
         "div",
         { style: _extends({}, styles.commonText, styleSelector(styles), style) },
@@ -216,13 +213,7 @@ function Gap(_ref) {
 
   var theme = useContext(ThemeContext);
   var styles = themedStyles$1(theme);
-  return React.createElement(
-    "div",
-    null,
-    React.createElement("p", {
-      style: _extends({}, styles.gap, size === "small" ? styles.smallGap : {})
-    })
-  );
+  return React.createElement("div", { style: _extends({}, styles.gap, size === "small" ? styles.smallGap : {}) });
 }
 
 var themedStyles$1 = function themedStyles(theme) {

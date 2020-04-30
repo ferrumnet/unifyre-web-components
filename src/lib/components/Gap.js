@@ -5,11 +5,10 @@ export function Gap({ size }) {
   const theme = useContext(ThemeContext);
   const styles = themedStyles(theme);
   return (
-    <div>
-      <p
-        style={{ ...styles.gap, ...(size === "small" ? styles.smallGap : {}) }}
-      ></p>
+    <div style={{ ...styles.gap, ...(size === "small" ? styles.smallGap : {}) }}>
     </div>
+
+    
   );
 }
 
