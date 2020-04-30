@@ -99,7 +99,7 @@ const themedStyles = function(theme) {
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer",
-      //height: "35px"
+      height: "45px"
     },
     smallButton: {
       paddingVertical: theme.get(Theme.Button.btnPadding) / 4

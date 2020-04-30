@@ -328,8 +328,8 @@ var themedStyles$2 = function themedStyles(theme) {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
-      cursor: "pointer"
-      //height: "35px"
+      cursor: "pointer",
+      height: "45px"
     },
     smallButton: {
       paddingVertical: theme.get(Theme.Button.btnPadding) / 4
@@ -403,7 +403,7 @@ function ThemedLink(_ref) {
     return React.createElement(
         'button',
         { onPress: onPress },
-        React.createElement(ThemedText.H4, { text: text, style: styles.link })
+        React.createElement(ThemedText.H4, { text: text, style: _extends({}, styles.link) })
     );
 }
 
@@ -430,12 +430,12 @@ function BigLogo() {
   var theme = useContext(ThemeContext);
   var styles = themedStyles$4();
   var resources = useContext(ResourceContext);
-  var logoSource = getRenderedResource("App.Icon.Big");
+  var logoSource = getRenderedResource("App.Icon.Big", "App.Icon.Big");
 
   return React.createElement(
     "div",
-    { style: styles.container },
-    React.createElement("img", { style: styles.logo, src: logoSource, alt: "big logo" })
+    { style: _extends({}, styles.container) },
+    React.createElement("img", { style: _extends({}, styles.logo), src: logoSource, alt: "big logo" })
   );
 }
 

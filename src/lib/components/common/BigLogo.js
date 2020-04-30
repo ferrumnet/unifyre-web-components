@@ -11,11 +11,11 @@ export function BigLogo() {
   const theme = useContext(ThemeContext);
   const styles = themedStyles(theme);
   const resources = useContext(ResourceContext);
-  const logoSource = getRenderedResource("App.Icon.Big");
+  const logoSource = getRenderedResource("App.Icon.Big", "App.Icon.Big");
 
   return (
-    <div style={styles.container}>
-      <img style={styles.logo} src={logoSource} alt="big logo" />
+    <div style={{...styles.container}}>
+      <img style={{...styles.logo}} src={logoSource} alt="big logo" />
     </div>
   );
 }

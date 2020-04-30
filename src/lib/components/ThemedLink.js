@@ -7,7 +7,7 @@ export function ThemedLink({text, onPress, disabled}) {
     const theme = useContext(ThemeContext)
     const styles = themedStyles(theme);
     return (
-        <button onPress={onPress}><ThemedText.H4 text={text} style={styles.link}/></button>
+        <button onPress={onPress}><ThemedText.H4 text={text} style={{...styles.link}}/></button>
     )
 }
 

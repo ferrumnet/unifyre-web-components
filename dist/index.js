@@ -335,8 +335,8 @@ var themedStyles$2 = function themedStyles(theme) {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
-      cursor: "pointer"
-      //height: "35px"
+      cursor: "pointer",
+      height: "45px"
     },
     smallButton: {
       paddingVertical: theme.get(unifyreReactHelper.Theme.Button.btnPadding) / 4
@@ -410,7 +410,7 @@ function ThemedLink(_ref) {
     return React__default.createElement(
         'button',
         { onPress: onPress },
-        React__default.createElement(ThemedText.H4, { text: text, style: styles.link })
+        React__default.createElement(ThemedText.H4, { text: text, style: _extends({}, styles.link) })
     );
 }
 
@@ -437,12 +437,12 @@ function BigLogo() {
   var theme = React.useContext(unifyreReactHelper.ThemeContext);
   var styles = themedStyles$4();
   var resources = React.useContext(unifyreReactHelper.ResourceContext);
-  var logoSource = unifyreNativeAssets.getRenderedResource("App.Icon.Big");
+  var logoSource = unifyreNativeAssets.getRenderedResource("App.Icon.Big", "App.Icon.Big");
 
   return React__default.createElement(
     "div",
-    { style: styles.container },
-    React__default.createElement("img", { style: styles.logo, src: logoSource, alt: "big logo" })
+    { style: _extends({}, styles.container) },
+    React__default.createElement("img", { style: _extends({}, styles.logo), src: logoSource, alt: "big logo" })
   );
 }
 
