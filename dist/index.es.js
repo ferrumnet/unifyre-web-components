@@ -240,134 +240,157 @@ var themedStyles$1 = function themedStyles(theme) {
  * @constructor
  */
 function ThemedButton(_ref) {
-    var text = _ref.text,
-        type = _ref.type,
-        disabled = _ref.disabled,
-        isSmall = _ref.isSmall,
-        onPress = _ref.onPress,
-        _ref$position = _ref.position,
-        position = _ref$position === undefined ? 'normal' : _ref$position;
+  var text = _ref.text,
+      type = _ref.type,
+      disabled = _ref.disabled,
+      isSmall = _ref.isSmall,
+      isExtraSmall = _ref.isExtraSmall,
+      onPress = _ref.onPress,
+      _ref$position = _ref.position,
+      position = _ref$position === undefined ? "normal" : _ref$position;
 
-    var theme = useContext(ThemeContext);
-    var styles = themedStyles$2(theme);
-    var bkgStyle = void 0,
-        textStyle = void 0,
-        buttonPositionStyle = void 0;
+  var theme = useContext(ThemeContext);
+  var styles = themedStyles$2(theme);
+  var bkgStyle = void 0,
+      textStyle = void 0,
+      buttonPositionStyle = void 0;
 
-    // position changer
-    if (position === 'sticky-bottom') buttonPositionStyle = styles.stickyBottom;else buttonPositionStyle = styles.common;
+  // position changer
+  if (position === "sticky-bottom") buttonPositionStyle = styles.stickyBottom;else buttonPositionStyle = styles.common;
 
-    // Button size mutator
-    var buttonSizeStyle = void 0,
-        textSizeStyle = void 0;
-    if (isSmall !== undefined) {
-        buttonSizeStyle = styles.smallButton;
-        textSizeStyle = styles.smallText;
-    }
+  // Button size mutator
+  var buttonSizeStyle = void 0,
+      textSizeStyle = void 0;
+  if (isSmall !== undefined) {
+    buttonSizeStyle = styles.smallButton;
+    textSizeStyle = styles.smallText;
+  }
 
-    switch (type) {
-        default:
-        case 'primary':
-            bkgStyle = styles.primary;
-            textStyle = styles.textPrimary;
-            break;
-        case 'highlight':
-            bkgStyle = styles.highlight;
-            textStyle = styles.textHighlight;
-            break;
-        case 'inverse':
-            bkgStyle = styles.inverse;
-            textStyle = styles.textInverse;
-            break;
-        case 'notification':
-            bkgStyle = styles.primary;
-            textStyle = styles.textInverse;
-            textSizeStyle = styles.smallText;
-            buttonPositionStyle = styles.notification;
-            break;
-    }
+  switch (type) {
+    default:
+    case "primary":
+      bkgStyle = styles.primary;
+      textStyle = styles.textPrimary;
+      break;
+    case "highlight":
+      bkgStyle = styles.highlight;
+      textStyle = styles.textHighlight;
+      break;
+    case "inverse":
+      bkgStyle = styles.inverse;
+      textStyle = styles.textInverse;
+      break;
+    case "notification":
+      bkgStyle = styles.primary;
+      textStyle = styles.textInverse;
+      textSizeStyle = styles.smallText;
+      buttonPositionStyle = styles.notification;
+      break;
+  }
 
-    return React.createElement(
-        'button',
-        { onClick: onPress, disabled: disabled, style: _extends({}, bkgStyle, buttonPositionStyle, buttonSizeStyle) },
-        React.createElement(ThemedText.H4, { text: text, style: _extends({}, textStyle, textSizeStyle) })
-    );
+  if (disabled) {
+    bkgStyle = styles.inverse;
+    textStyle = styles.textInverse;
+  }
+
+  if (isExtraSmall !== undefined) {
+    buttonSizeStyle = styles.extraSmall;
+    textSizeStyle = styles.extraSmallText;
+  }
+
+  return React.createElement(
+    "button",
+    {
+      onClick: onPress,
+      disabled: disabled,
+      style: _extends({}, bkgStyle, buttonPositionStyle, buttonSizeStyle)
+    },
+    React.createElement(ThemedText.H4, { text: text, style: _extends({}, textStyle, textSizeStyle) })
+  );
 }
 
 ThemedButton.propTypes = {
-    type: PropTypes.oneOf(['primary', 'highlight', 'inverse', 'notification']),
-    text: PropTypes.string,
-    onPress: PropTypes.func,
-    disabled: PropTypes.bool
+  type: PropTypes.oneOf(["primary", "highlight", "inverse", "notification"]),
+  text: PropTypes.string,
+  onPress: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 var themedStyles$2 = function themedStyles(theme) {
-    var _stickyBottom;
+  var _stickyBottom;
 
-    return {
-        common: {
-            width: '100%',
-            borderRadius: theme.get(Theme.Button.btnBorderRadius),
-            paddingVertical: theme.get(Theme.Button.btnPadding) * 0.5,
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            height: '35px'
-        },
-        smallButton: {
-            paddingVertical: theme.get(Theme.Button.btnPadding) / 4
-        },
-        smallText: {
-            fontSize: theme.get(Theme.Text.h2Size) * 0.5
-
-        },
-        notification: {
-            width: '100%',
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: theme.get(Theme.Button.btnBorderRadius),
-            borderBottomLeftRadius: theme.get(Theme.Button.btnBorderRadius),
-            paddingVertical: theme.get(Theme.Spaces.gap) / 3,
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: theme.get(Theme.Button.btnHighlight),
-            cursor: 'pointer'
-        },
-        stickyBottom: (_stickyBottom = {
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            bottom: theme.get(Theme.Button.btnPadding),
-            left: theme.get(Theme.Spaces.screenMarginVertical),
-            width: '100%',
-            borderRadius: theme.get(Theme.Button.btnBorderRadius)
-        }, defineProperty(_stickyBottom, 'bottom', 0), defineProperty(_stickyBottom, 'left', 0), defineProperty(_stickyBottom, 'right', 0), defineProperty(_stickyBottom, 'justifyContent', 'center'), defineProperty(_stickyBottom, 'alignItems', 'center'), _stickyBottom),
-        primary: {
-            backgroundColor: theme.get(Theme.Button.btnPrimary)
-            // outline: 'none', 
-        },
-        highlight: {
-            backgroundColor: theme.get(Theme.Button.btnHighlight)
-        },
-        inverse: {
-            backgroundColor: theme.get(Theme.Button.inverseBtnPrimary),
-            outline: 'none'
-        },
-        textPrimary: {
-            color: theme.get(Theme.Button.btnPrimaryTextColor)
-        },
-        textHighlight: {
-            color: theme.get(Theme.Button.btnHighlightTextColor)
-        },
-        textInverse: {
-            color: theme.get(Theme.Button.inverseBtnPrimaryTextColor)
-        }
-
-    };
+  return {
+    common: {
+      width: "100%",
+      borderRadius: theme.get(Theme.Button.btnBorderRadius),
+      paddingVertical: theme.get(Theme.Button.btnPadding) * 0.5,
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer"
+      //height: "35px"
+    },
+    smallButton: {
+      paddingVertical: theme.get(Theme.Button.btnPadding) / 4
+    },
+    smallText: {
+      fontSize: theme.get(Theme.Text.h2Size) * 0.5
+    },
+    notification: {
+      width: "100%",
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: theme.get(Theme.Button.btnBorderRadius),
+      borderBottomLeftRadius: theme.get(Theme.Button.btnBorderRadius),
+      paddingVertical: theme.get(Theme.Spaces.gap) / 3,
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: theme.get(Theme.Button.btnHighlight),
+      cursor: "pointer"
+    },
+    stickyBottom: (_stickyBottom = {
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      bottom: theme.get(Theme.Button.btnPadding),
+      left: theme.get(Theme.Spaces.screenMarginVertical),
+      width: "100%",
+      borderRadius: theme.get(Theme.Button.btnBorderRadius)
+    }, defineProperty(_stickyBottom, "bottom", 0), defineProperty(_stickyBottom, "left", 0), defineProperty(_stickyBottom, "right", 0), defineProperty(_stickyBottom, "justifyContent", "center"), defineProperty(_stickyBottom, "alignItems", "center"), defineProperty(_stickyBottom, "cursor", "pointer"), _stickyBottom),
+    primary: {
+      backgroundColor: theme.get(Theme.Button.btnPrimary)
+    },
+    highlight: {
+      backgroundColor: theme.get(Theme.Button.btnHighlight)
+    },
+    inverse: {
+      backgroundColor: theme.get(Theme.Button.inverseBtnPrimary),
+      outline: "none"
+    },
+    textPrimary: {
+      color: theme.get(Theme.Button.btnPrimaryTextColor)
+    },
+    textHighlight: {
+      color: theme.get(Theme.Button.btnHighlightTextColor)
+    },
+    textInverse: {
+      color: theme.get(Theme.Button.inverseBtnPrimaryTextColor)
+    },
+    extraSmall: {
+      paddingRight: theme.get(Theme.Button.btnPadding) / 2,
+      paddingLeft: theme.get(Theme.Button.btnPadding) / 2,
+      paddingBottom: theme.get(Theme.Button.btnPadding) / 5,
+      paddingTop: theme.get(Theme.Button.btnPadding) / 5,
+      width: 'auto',
+      alignSelf: 'center'
+    },
+    extraSmallText: {
+      fontSize: theme.get(Theme.Text.h3Size) * 0.5
+    }
+  };
 };
 
 function ThemedLink(_ref) {
