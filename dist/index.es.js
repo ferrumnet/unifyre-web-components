@@ -1,10 +1,16 @@
-import React, { useContext, Component } from 'react';
+import React, { useState, useEffect, useContext, Component } from 'react';
 import { ThemeContext, Theme, ResourceContext } from 'unifyre-react-helper';
 import { PropTypes } from 'prop-types';
 import { getRenderedResource } from 'unifyre-native-assets';
 import { Icon } from '@iconify/react';
 import mdArrowDropdown from '@iconify/icons-ion/md-arrow-dropdown';
 import moment from 'moment';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -95,6 +101,89 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
+var slicedToArray = function () {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  return function (arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
+
+// Usage
+// function AnyComponent() {
+//   const size = useWindowSize();
+
+//   return (
+//     <div>
+//       {size.width}px / {size.height}px
+//     </div>
+//   );
+// }
+
+// Hook
+function useWindowSize() {
+  var isClient = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object';
+
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined
+    };
+  }
+
+  var _useState = useState(getSize),
+      _useState2 = slicedToArray(_useState, 2),
+      windowSize = _useState2[0],
+      setWindowSize = _useState2[1];
+
+  useEffect(function () {
+    if (!isClient) {
+      return false;
+    }
+
+    function handleResize() {
+      setWindowSize(getSize());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return function () {
+      return window.removeEventListener('resize', handleResize);
+    };
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+}
+
 var ThemedText = function () {
   function ThemedText() {
     classCallCheck(this, ThemedText);
@@ -180,30 +269,39 @@ var ThemedText = function () {
 }();
 
 
+function widthFactor() {
+  var size = useWindowSize();
+  var w = size.width;
+  var wf = 1;
+  if (w <= 320) {
+    wf = 0.7;
+  }
+  return wf;
+}
+
 var themedStyles = function themedStyles(theme) {
   return {
     commonText: {
       fontFamily: theme.get(Theme.Font.main),
-      // color: theme.get(Theme.Colors.textColor),
-      color: "pink"
+      color: theme.get(Theme.Colors.textColor)
     },
     h1: {
-      fontSize: theme.get(Theme.Text.h1Size)
+      fontSize: theme.get(Theme.Text.h1Size) * widthFactor()
     },
     h2: {
-      fontSize: theme.get(Theme.Text.h2Size)
+      fontSize: theme.get(Theme.Text.h2Size) * widthFactor()
     },
     h3: {
-      fontSize: theme.get(Theme.Text.h3Size)
+      fontSize: theme.get(Theme.Text.h3Size) * widthFactor()
     },
     h4: {
-      fontSize: theme.get(Theme.Text.h4Size)
+      fontSize: theme.get(Theme.Text.h4Size) * widthFactor()
     },
     p: {
-      fontSize: theme.get(Theme.Text.h2Size) * 0.7
+      fontSize: theme.get(Theme.Text.h2Size) * 0.7 * widthFactor()
     },
     small: {
-      fontSize: theme.get(Theme.Text.h3Size) * 0.7
+      fontSize: theme.get(Theme.Text.h3Size) * 0.7 * widthFactor()
     }
   };
 };
@@ -627,57 +725,59 @@ var themedStyles$6 = function themedStyles(theme) {
  * @constructor
  */
 function HeaderLabel(_ref) {
-    var title = _ref.title,
-        description = _ref.description;
+  var title = _ref.title,
+      description = _ref.description,
+      toggleIcon = _ref.toggleIcon;
 
-    var theme = useContext(ThemeContext);
-    var styles = themedStyles$7();
-    var arrowIconSource = getRenderedResource('Icon.Arrow.Right');
-
-    return React.createElement(
+  var theme = useContext(ThemeContext);
+  var styles = themedStyles$7();
+  var arrowIconSource = getRenderedResource("Icon.Arrow.Right");
+  var thisIsPressed = function thisIsPressed() {
+    return toggleIcon();
+  };
+  return React.createElement(
+    "div",
+    { style: styles.container },
+    React.createElement(
+      "div",
+      { style: styles.textContainer },
+      React.createElement(ThemedText.P, { text: title, style: styles.title }),
+      React.createElement(ThemedText.SMALL, { text: description, style: styles.description })
+    ),
+    React.createElement(
+      "button",
+      { onClick: thisIsPressed },
+      React.createElement(
         "div",
-        { style: styles.container },
-        React.createElement(
-            "div",
-            { style: styles.textContainer },
-            React.createElement(ThemedText.P, { text: title,
-                style: styles.title }),
-            React.createElement(ThemedText.SMALL, { text: description,
-                style: styles.description })
-        ),
-        React.createElement(
-            "div",
-            { style: styles.iconContainer },
-            React.createElement("img", {
-                style: styles.icon,
-                src: arrowIconSource,
-                alt: "icon" })
-        )
-    );
+        { style: styles.iconContainer },
+        React.createElement("img", { style: styles.icon, src: arrowIconSource, alt: "icon" })
+      )
+    )
+  );
 }
 
 HeaderLabel.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string
+  title: PropTypes.string,
+  description: PropTypes.string
 };
 
 var themedStyles$7 = function themedStyles(theme) {
-    return {
-        container: {
-            flexDirection: 'row'
-        },
-        textContainer: {
-            flex: 4
-        },
-        iconContainer: {
-            justifyContent: 'center',
-            alignItems: 'flex-end',
-            flex: 1
-        },
-        icon: {
-            height: 10
-        }
-    };
+  return {
+    container: {
+      flexDirection: "row"
+    },
+    textContainer: {
+      flex: 4
+    },
+    iconContainer: {
+      justifyContent: "center",
+      alignItems: "flex-end",
+      flex: 1
+    },
+    icon: {
+      height: 10
+    }
+  };
 };
 
 /**
@@ -1355,7 +1455,6 @@ var themedStyles$f = function themedStyles(theme) {
  *
  * @extends Component
  */
-
 var Notification = function (_Component) {
     inherits(Notification, _Component);
 
@@ -1365,19 +1464,19 @@ var Notification = function (_Component) {
         var _this = possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
 
         _this.state = {
-            isShow: false,
+            isShow: true,
             title: _this.props.title,
             message: _this.props.message
         };
         return _this;
     }
 
+    // componentWillReceiveProps(nextProps)
+    // {
+    //     this.setState({isShow: nextProps.isShow});
+    // }
+
     createClass(Notification, [{
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextProps) {
-            this.setState({ isShow: nextProps.isShow });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -1393,7 +1492,7 @@ var Notification = function (_Component) {
             if (!isShow) {
                 return null;
             }
-
+            console.log(this.props, 'in the notification component');
             return React.createElement(
                 'div',
                 { style: styles.container },
@@ -1415,13 +1514,18 @@ var Notification = function (_Component) {
                 )
             );
         }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            if (nextProps.isShow !== prevState.isShow) {
+                return { isShow: nextProps.isShow }; // <- this is setState equivalent
+            }
+        }
     }]);
     return Notification;
 }(Component);
 
 Notification.contextType = ThemeContext;
-
-
 Notification.propTypes = {
     title: PropTypes.string,
     message: PropTypes.string,
@@ -2340,5 +2444,5 @@ var themedStyles$o = function themedStyles(theme) {
   };
 };
 
-export { AccountListItem, BigLogo, Card, Coin, CoinBalance, CoinDeposit, Gap, HeaderLabel, IconLabel, InputGroupAddon, InputSearch, InputSwitch, Item, List, ListItem, Logo, PageTitle, PageTopSection, Row, StickyBottom, ThemedButton, ThemedLink, ThemedText, UserActivity };
+export { AccountListItem, BigLogo, Card, Coin, CoinBalance, CoinDeposit, Gap, HeaderLabel, IconLabel, InputGroupAddon, InputSearch, InputSwitch, Item, List, ListItem, Logo, Notification, PageTitle, PageTopSection, Row, StickyBottom, ThemedButton, ThemedLink, ThemedText, UserActivity, widthFactor };
 //# sourceMappingURL=index.es.js.map

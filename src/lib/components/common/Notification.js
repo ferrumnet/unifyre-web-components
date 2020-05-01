@@ -9,23 +9,29 @@ import {ThemedButton} from "../ThemedButton";
  *
  * @extends Component
  */
-export default class Notification extends Component {
+export class Notification extends Component {
 
     static contextType = ThemeContext;
 
     constructor(props) {
         super(props);
         this.state = {
-            isShow: false,
+            isShow: true,
             title: this.props.title,
             message: this.props.message,
         };
     }
 
-    componentWillReceiveProps(nextProps)
-    {
-        this.setState({isShow: nextProps.isShow});
-    }
+    // componentWillReceiveProps(nextProps)
+    // {
+    //     this.setState({isShow: nextProps.isShow});
+    // }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.isShow !== prevState.isShow) {
+          return ({ isShow: nextProps.isShow }) // <- this is setState equivalent
+        }
+      }
 
     render() {
         let {message, title, isShow} = this.state;
@@ -35,7 +41,7 @@ export default class Notification extends Component {
         if(!isShow){
             return null;
         }
-
+        console.log(this.props, 'in the notification component')
         return (
             <div style={styles.container}>
                     <div style={styles.modal}>
