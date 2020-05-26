@@ -28,5 +28,8 @@
   "homepage": "https://github.com/ferrumnet/unifyre-web-components#readme",
   "devDependencies": {
     "jest": "^24.8.0"
+  },
+  "dependencies": {
+    "unifyre-react-helper": "git+https://github.com/ferrumnet/unifyre-react-helper.git"
   }
 }

@@ -2,7 +2,7 @@
 ## declare an array variable
 
 declare -a arr=(
-  "../unifyre-native-wallet-components/node_modules/unifyre-native-components/"
+  "../unifyre-extension-examples/examples/react-wyre/node_modules/unifyre-web-components/"
 )
 
 ## now loop through the above array

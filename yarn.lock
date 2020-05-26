@@ -1362,13 +1362,6 @@ inherits@2:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
-inotifywait@^1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/inotifywait/-/inotifywait-1.8.3.tgz#16edff3f15e7955d5f51c8b769a22698d7acab05"
-  integrity sha1-Fu3/PxXnlV1fUci3aaImmNesqwU=
-  dependencies:
-    lazy "~1.0.11"
-
 invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -2057,11 +2050,6 @@ kleur@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
-
-lazy@~1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/lazy/-/lazy-1.0.11.tgz#daa068206282542c088288e975c297c1ae77b690"
-  integrity sha1-2qBoIGKCVCwIgojpdcKXwa53tpA=
 
 left-pad@^1.3.0:
   version "1.3.0"
@@ -3095,6 +3083,10 @@ type-check@~0.3.2:
   integrity sha1-WITKtRLPHTVeP7eE8wgEsrUg23I=
   dependencies:
     prelude-ls "~1.1.2"
+
+"unifyre-react-helper@git+https://github.com/ferrumnet/unifyre-react-helper.git":
+  version "1.0.0"
+  resolved "git+https://github.com/ferrumnet/unifyre-react-helper.git#6e9a9871986ef8a21e2394b16308b596dc0f0f65"
 
 union-value@^1.0.0:
   version "1.0.1"

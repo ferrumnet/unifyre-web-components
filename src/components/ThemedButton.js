@@ -1,5 +1,26 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
+import {ThemeContext, Theme} from 'unifyre-react-helper';
+import { ThemedText } from './ThemedText';
+import css from '../css/main.css';
 
-function ThemedButton({text}) {
-  return ( <h1> BUTTON {text} </h1> );
+export function ThemedButton({text, onClick}) {
+  const theme = useContext(ThemeContext);
+  const styles = themedStyles(theme);
+  return ( <a className={'button'} style={{...styles.btn}} onClick={onClick}>
+    <ThemedText.P style={styles.btnText}>{text}</ThemedText.P></a> );
 }
+
+const themedStyles = theme => ({
+    btn: {
+      backgroundColor: theme.get(Theme.Button.btnPrimary),
+      color: theme.get(Theme.Button.btnPrimaryTextColor),
+      borderRadius: theme.get(Theme.Button.btnBorderRadius),
+      padding: theme.get(Theme.Button.btnPadding) / 2,
+      textAlign: 'center',
+      display: 'block',
+      flex: 1,
+    },
+    btnText: {
+      color: theme.get(Theme.Button.btnPrimaryTextColor),
+    }
+});
