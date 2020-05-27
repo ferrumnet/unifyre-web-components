@@ -6,7 +6,7 @@ export function ThemedLink({text, onClick, disabled, type}) {
     const theme = useContext(ThemeContext);
     const styles = themedStyles(theme);
     return (
-        <a onClick={onClick}>
+        <a onClick={onClick} >
             <ThemedText.H4 text={text} style={type === 'primary' ? styles.primaryLink : styles.link}>
                 {text}
             </ThemedText.H4>

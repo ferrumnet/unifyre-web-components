@@ -21,7 +21,7 @@ export function InputCurrency({currencies, placeHolder, amountStr, onAmountChang
         <InputGroupAddon
             value={value}
             placeholder={placeHolder}
-            onChangeText={v => {
+            onChange={v => {
                 const numv = formatter.unFormat(v);
                 if (numv) {
                     setValue(v);
@@ -29,8 +29,8 @@ export function InputCurrency({currencies, placeHolder, amountStr, onAmountChang
                 }
                 }
             }
-            autofocus={autoFocus}
-            inputmode={'decimal'}
+            autoFocus={autoFocus}
+            inputMode={'decimal'}
             textStyle={styles.textStyle}
             editable={undefined}
             rightAddon={<NakedDropDown
