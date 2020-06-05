@@ -13,7 +13,7 @@ export function InputGroupAddon({placeholder = '', icon = '', value = '', type =
                                     numberOfLines = 1, multiline = false,
                                     isPassword = false, leftAddon, rightAddon, textStyle, editable,
                                     lightBorder = false,
-                                    inputRef, ...props}) {
+                                    inputRef, onChange, ...props}) {
     const theme = useContext(ThemeContext);
     const styles = themedStyles(theme);
 
@@ -57,7 +57,9 @@ export function InputGroupAddon({placeholder = '', icon = '', value = '', type =
                 style={Object.assign(styles.input, editRelatedStyleFg, textStyle)}
                 placeholder={placeholder}
                 maxLength={80}
-                defaultValue={value}
+                value={!editable ? value : undefined}
+                defaultValue={editable ? value : undefined}
+                onChange={e => onChange(e.target.value)}
                 {...props}
             />
             )}
