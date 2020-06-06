@@ -3,10 +3,12 @@ import {ThemeContext, Theme} from 'unifyre-react-helper';
 import { ThemedText } from './ThemedText';
 import css from '../css/main.css';
 
-export function ThemedButton({text, onClick}) {
+export function ThemedButton({text, disabled, onClick}) {
   const theme = useContext(ThemeContext);
   const styles = themedStyles(theme);
-  return ( <a className={'button'} style={{...styles.btn}} onClick={onClick}>
+  return ( <a className={'button'}
+    style={{...styles.btn, ...(disabled ? styles.disabled : {})}}
+    onClick={() => disabled ? { } : onClick()}>
     <ThemedText.P style={styles.btnText}>{text}</ThemedText.P></a> );
 }
 
@@ -22,5 +24,9 @@ const themedStyles = theme => ({
     },
     btnText: {
       color: theme.get(Theme.Button.btnPrimaryTextColor),
-    }
+    },
+    disabled: {
+      backgroundColor: theme.get(Theme.Button.inverseBtnPrimary),
+      color: theme.get(Theme.Button.inverseBtnPrimaryTextColor),
+    },
 });
