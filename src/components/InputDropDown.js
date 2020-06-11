@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {ThemeContext, Theme} from "unifyre-react-helper";
 import {widthFactor} from "./ThemedText";
+import { IoIosArrowDown } from 'react-icons/io';
 
 export function InputDropDown({items, selectedKey, onItemSelected, itemRenderer}) {
     const [open, setOpen] = useState(false);
@@ -18,13 +19,14 @@ export function InputDropDown({items, selectedKey, onItemSelected, itemRenderer}
             </a>
         );
     }
+    selectedKey = selectedKey || (items[0] || {}).key;
     const selectedItem = (items || []).find(i => i.key === selectedKey);
     return (
         <div style={Object.assign(styles.container)}>
             <div style={Object.assign(styles.containerInner, styles.open)}>
             <a style={Object.assign(styles.menuContainer, styles.item)} onClick={() => setOpen(!open)} >
                 <div style={styles.selectPart}>{itemRenderer(selectedItem || items[0])}</div>
-                <div style={styles.icon}>🡇</div>
+                <div style={styles.icon}><IoIosArrowDown size={theme.get(Theme.Text.h3Size)} /></div>
             </a>
             {open ? (
                 <>
@@ -42,7 +44,7 @@ const themedStyles = theme => ({
         position: 'relative',
         width: '100%',
         maxWidth: '100%',
-        minHeight: theme.get(Theme.Spaces.line) * 4,
+        minHeight: theme.get(Theme.Spaces.line) * 3,
     },
     containerInner: {
         position: 'relative',
@@ -57,11 +59,11 @@ const themedStyles = theme => ({
     menuContainer: {
         color: theme.get(Theme.Input.inputTextColor),
         borderColor: theme.get(Theme.Colors.bkgShade4),
-        borderRadius: theme.get(Theme.Spaces.line) * 2,
+        borderRadius: theme.get(Theme.Spaces.line) * 1.5,
         backgroundColor: theme.get(Theme.Input.inputBackground),
     },
     item: {
-        height: theme.get(Theme.Spaces.line) * 4,
+        height: theme.get(Theme.Spaces.line) * 3,
         display: 'block',
         borderColor: theme.get(Theme.Colors.bkgShade4),
         borderWidth: 1,

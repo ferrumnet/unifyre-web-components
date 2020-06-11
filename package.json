@@ -30,6 +30,7 @@
     "jest": "^24.8.0"
   },
   "dependencies": {
+    "react-icons": "^3.10.0",
     "unifyre-react-helper": "git+https://github.com/ferrumnet/unifyre-react-helper.git"
   }
 }
