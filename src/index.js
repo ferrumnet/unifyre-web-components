@@ -10,3 +10,7 @@ export * from './components/InputCurrency';
 export * from './components/ThemedLink';
 export * from './components/List';
 export * from './components/InputDropDown';
+export * from './components/Dialogue';
+export * from './components/FullScreen';
+export * from './components/Waiting';
+export * from './components/ErrorMessage';
