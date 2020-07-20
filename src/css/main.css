@@ -18,3 +18,8 @@ button:focus {
     right: 0px;
     z-index: 999;
 }
+
+
+input[type="checkbox"] {
+    transform: scale(1.6);
+}
