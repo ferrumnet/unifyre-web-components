@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {ThemeContext, Theme} from 'unifyre-react-helper';
 import {widthFactor} from './ThemedText';
-import css from '../css/main.css';
 
 /**
  * InputGroupAddon components - used to create inputs with icon on the box

@@ -5,6 +5,7 @@ declare -a arr=(
   "../unifyre-extension-examples/examples/react-wyre/node_modules/unifyre-web-components/"
   "../unifyre-app-wyre/frontend/node_modules/unifyre-web-components/"
   "../unifyre-app-pooldrop/frontend/node_modules/unifyre-web-components/"
+  "../unifyre-app-p2pswap/frontend/node_modules/unifyre-web-components/"
 )
 
 ## now loop through the above array
