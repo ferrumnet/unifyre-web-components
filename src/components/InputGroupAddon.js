@@ -45,6 +45,7 @@ export function InputGroupAddon({placeholder = '', icon = '', value = '', type =
                 placeholder={placeholder}
                 defaultValue={value}
                 rows={numberOfLines}
+                onChange={e => onChange(e.target.value)}
                 {...props}
             />
             ) : (
