@@ -43,7 +43,6 @@ export function InputGroupAddon({placeholder = '', icon = '', value = '', type =
                 editable={editable}
                 style={Object.assign(styles.input, editRelatedStyleFg, textStyle)}
                 placeholder={placeholder}
-                maxLength={80}
                 defaultValue={value}
                 rows={numberOfLines}
                 {...props}
