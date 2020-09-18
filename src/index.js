@@ -15,3 +15,4 @@ export * from './components/FullScreen';
 export * from './components/Waiting';
 export * from './components/ErrorMessage';
 export * from './components/CheckBoxWithLabel';
+export * from './components/page/TransactionContinuation';
