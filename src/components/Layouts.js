@@ -1,5 +1,6 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {ThemeContext, Theme} from 'unifyre-react-helper';
+
 
 /**
  * Single row layout - container

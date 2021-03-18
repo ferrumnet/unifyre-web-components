@@ -3,7 +3,7 @@ import {ThemeContext, Theme} from 'unifyre-react-helper';
 import { ThemedText } from './ThemedText';
 import '../css/main.css';
 
-export function ThemedButton({text, disabled, highlight, onClick,testStyle}) {
+export function WebThemedButton({text, disabled, highlight, onClick,testStyle}) {
   const theme = useContext(ThemeContext);
   const styles = themedStyles(theme);
   return ( <a className={'button'}

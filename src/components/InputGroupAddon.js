@@ -7,7 +7,7 @@ import {widthFactor} from './ThemedText';
  *
  * @constructor
  */
-export function InputGroupAddon({placeholder = '', icon = '', value = '', type = 'text',
+export function InputGroupAddon({placeholder = '', icon = '', value = '',
                                     toggleIcon, toggleIconOnPressIn, toggleIconOnPressOut,
                                     numberOfLines = 1, multiline = false,
                                     isPassword = false, leftAddon, rightAddon, textStyle, editable,
@@ -52,7 +52,6 @@ export function InputGroupAddon({placeholder = '', icon = '', value = '', type =
             <input
                 ref={inputRef}
                 editable={editable}
-                type={isPassword ? 'password' : type}
                 style={Object.assign(styles.input, editRelatedStyleFg, textStyle)}
                 placeholder={placeholder}
                 maxLength={80}

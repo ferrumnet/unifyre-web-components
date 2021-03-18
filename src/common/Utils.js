@@ -39,15 +39,30 @@ export class Utils {
     }
 
     static linkForAddress(network, addr) {
-        return  (network === 'RINKEBY') ?
-            `https://rinkeby.etherscan.io/address/${addr}` :
-            `https://etherscan.io/address/${addr}`;
+        switch (network.toLocaleLowerCase()) {
+            case 'rinkeby':
+                return `https://rinkeby.etherscan.io/address/${addr}`;
+            case 'ethereum':
+                return `https://etherscan.io/address/${addr}`;
+            case 'bsc':
+                return `https://bscscan.com/address/${addr}`;
+            case 'bsc_testnet':
+                return `https://testnet.bscscan.com/address/${addr}`;
+        }
+        return '';
     }
 
     static linkForTransaction(network, tid) {
-        return  (network === 'RINKEBY') ?
-            `https://rinkeby.etherscan.io/tx/${tid}` :
-            `https://etherscan.io/tx/${tid}`;
+        switch (network.toLocaleLowerCase()) {
+            case 'rinkeby':
+                return `https://rinkeby.etherscan.io/tx/${tid}`;
+            case 'ethereum':
+                return `https://etherscan.io/tx/${tid}`;
+            case 'bsc':
+                return `https://bscscan.com/tx/${tid}`;
+            case 'bsc_testnet':
+                return `https://testnet.bscscan.com/tx/${tid}`;
+        }
+        return '';
     }
-
 }
