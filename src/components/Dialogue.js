@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import {ThemeContext, Theme} from "unifyre-react-helper";
 import {Row} from './Layouts';
 import { ThemedText, widthFactor } from './ThemedText';
-import { ThemedButton } from './ThemedButton';
+import { WebThemedButton as ThemedButton } from './ThemedButton';
 import { FullScreen } from './FullScreen';
 
 export class Dialogue {

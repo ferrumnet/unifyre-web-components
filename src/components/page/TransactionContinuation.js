@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Row, Gap } from '../Layouts';
 import { ThemedText } from '../ThemedText';
 import { ThemedLink } from '../ThemedLink';
-import { ThemedButton } from '../ThemedButton';
+import { WebThemedButton as ThemedButton } from '../ThemedButton';
 import { ThemeContext } from 'unifyre-react-helper';
 import greenTick from '../../images/green-tick.png';
 
