@@ -48,6 +48,10 @@ export class Utils {
                 return `https://bscscan.com/address/${addr}`;
             case 'bsc_testnet':
                 return `https://testnet.bscscan.com/address/${addr}`;
+            case 'mumbai_testnet':
+                return `https://mumbai.polygonscan.com/tx/${addr}`;
+            case 'polygon':
+                return `https://polygonscan.com/tx/${addr}`;
         }
         return '';
     }
@@ -62,6 +66,10 @@ export class Utils {
                 return `https://bscscan.com/tx/${tid}`;
             case 'bsc_testnet':
                 return `https://testnet.bscscan.com/tx/${tid}`;
+            case 'mumbai_testnet':
+                return `https://mumbai.polygonscan.com/tx/${tid}`;
+            case 'polygon':
+                return `https://polygonscan.com/tx/${tid}`;
         }
         return '';
     }
